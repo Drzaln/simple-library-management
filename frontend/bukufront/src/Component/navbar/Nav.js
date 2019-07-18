@@ -1,9 +1,11 @@
 import React from 'react';
 import {
   Navbar,
-  NavbarBrand
+  NavbarBrand,
+  Nav,
+  NavItem,
 } from 'reactstrap';
-import './nav.css';
+import '../../support/style/nav.css';
 import {Link} from 'react-router-dom';
 
 export default class Example extends React.Component {
@@ -22,10 +24,17 @@ export default class Example extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="wrapper">
         <Navbar className="navbar" color="light" light expand="md">
         <div className="container">
             <Link to='/'><NavbarBrand className="navbarBrand">BOOK</NavbarBrand></Link>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+              <button type="button" class="btn btn-outline-primary btn-sm font-weight-bold">
+              Buku Dipinjam
+              </button>
+              </NavItem>
+            </Nav>
         </div>
         </Navbar>
       </div>

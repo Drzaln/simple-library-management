@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import buku from './buku';
+import {buku} from './buku';
 
 
 const appReducer = combineReducers({
