@@ -25,7 +25,7 @@ export const postBuku = (data) => {
 export const editBuku = (data, id_buku) => {
   return {
     type: "EDIT_BUKU",
-    payload: axios.post(Url + `book/${id_buku}`, data)
+    payload: axios.patch(Url + `book/${id_buku}`, data)
   };
 };
 

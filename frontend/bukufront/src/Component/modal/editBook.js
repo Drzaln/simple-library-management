@@ -1,74 +1,87 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form } from 'reactstrap';
 import { connect } from "react-redux";
-import { postBuku, getBuku } from "../../Publics/redux/actions/buku";
+import { editBuku, getBukuId } from "../../Publics/redux/actions/buku";
 
 class AddBook extends React.Component {
 
     constructor(props) {
 		super(props);
 		this.state = {
-			modal: false,
-			books: [],
+			modal: true,
+            books: [],
+            editedBook:[]
 		};
 
 		this.toggle = this.toggle.bind(this);
-	}
+    }
+    
+    componentDidMount = async () => {
+        await this.props.dispatch(getBukuId(this.props.match.params.id_buku))
+        this.setState({
+          books: this.props.buku
+        })
+      }
 
 	toggle() {
 		this.setState({
 			modal: !this.state.modal
 		});
-	}
+    }
+    
+    changeHandle = (e) =>{
+        const name = e.currentTarget.name
+        const val = e.currentTarget.value
+        this.state.books.listBuku[name] = val
+        this.setState({books:this.state.books})
+        
+    }
 
     render() {
 
         const bookAdd = () => {
-			let id_kategori = '';
-			switch (this.state.category) {
-				case 'Fiction':
-					id_kategori = 2;
-					break;
-				default:
-					id_kategori = 1;
-			}
-			this.state.buku.push({
-				nama_buku: this.state.nama_buku,
-				penulis_buku: this.state.penulis_buku,
-				ringkasan: this.state.ringkasan,
-				lokasi_buku: this.state.lokasi_buku,
-				gmb_buku: this.state.gmb_buku,
-				id_kategori,
+			this.state.editedBook.push({
+				nama_buku: list ? list.nama_buku : '',
+				penulis_buku: list ? list.penulis_buku : '',
+				ringkasan: list ? list.ringkasan : '',
+				lokasi_buku: list ? list.lokasi_buku : '',
+				gmb_buku: list ? list.gmb_buku : '',
+				id_kategori: list ? list.id_kategori : '',
 			});
-			add()
+			edit()
 			this.setState((prevState) => ({
 				modal: !prevState.modal
 			}));
-			console.log(this.state.buku);
+			console.log(this.state.editedBook);
 		};
-		let add = async () => {
-			await this.props.dispatch(postBuku(this.state.buku[0]));
-		};
+		let edit = async () => {
+            await this.props.dispatch(editBuku(this.state.editedBook[0],this.props.match.params.id_buku));
+            console.log(`holaaaaaaaaaaaaaa`,this.state.editedBook)
+        };
+
+        const { books } = this.state;
+        const list = books.listBuku;
+        console.log(`ini list`, list)
+        
 
         return (
             <div>
-                <p class="nav-item nav-link active font-weight-bold font-size-big " onClick={this.toggle} >EDIT<span class="sr-only">(current)</span></p>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Data</ModalHeader>
                     <ModalBody>
                         <Form>
                             <Label>Url Image</Label>
-                            <Input placeholder="Url Image..." id="gmb_buku" onChange={(e) => this.setState({ gmb_buku: e.target.value })} className="mb-3" />
+                            <Input name="gmb_buku" placeholder="Url Image..." id="gmb_buku" value={list ? list.gmb_buku : ''} onChange={this.changeHandle} className="mb-3" />
                             <Label>Title</Label>
-                            <Input placeholder="Title..." id="nama_buku" onChange={(e) => this.setState({ nama_buku: e.target.value })} className="mb-3" />
+                            <Input name="nama_buku" placeholder="Title..." id="nama_buku" value={list ? list.nama_buku : ''} onChange={this.changeHandle} className="mb-3" />
                             <Label>Author</Label>
-                            <Input placeholder="Author..." id="penulis_buku" onChange={(e) => this.setState({ penulis_buku: e.target.value })} className="mb-3" />
+                            <Input name="penulis_buku" placeholder="Author..." id="penulis_buku" value={list ? list.penulis_buku : ''} onChange={this.changeHandle} className="mb-3" />
                             <Label>category</Label>
-                            <Input placeholder="category..." ref="inputCategory" id="id_kategori" onChange={(e) => this.setState({ id_kategori: e.target.value })} className="mb-3" />
+                            <Input name="id_kategori" placeholder="category..." ref="inputCategory" id="id_kategori" value={list ? list.id_kategori : ''} onChange={this.changeHandle} className="mb-3" />
                             <Label>lokasi</Label>
-                            <Input placeholder="lokasi..." ref="inputLokasi" id="lokasi_buku" onChange={(e) => this.setState({ lokasi_buku: e.target.value })} className="mb-3" />
+                            <Input name="lokasi_buku" placeholder="lokasi..." ref="inputLokasi" id="lokasi_buku" value={list ? list.lokasi_buku : ''} onChange={this.changeHandle} className="mb-3" />
                             <Label for="exampleText">Description</Label>
-                            <Input type="textarea" ref="inputDescription" id="ringkasan" onChange={(e) => this.setState({ ringkasan: e.target.value })} placeholder="Description..." />
+                            <Input name="ringkasan" type="textarea" ref="inputDescription" id="ringkasan" value={list ? list.ringkasan : ''} onChange={this.changeHandle} placeholder="Description..." />
                         </Form>
                     </ModalBody>
                     <ModalFooter>

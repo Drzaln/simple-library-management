@@ -24,7 +24,7 @@ class Buku extends Component {
       modal: !prevState.modal
     }));
   }
-  
+
   toggleedit = this.toggleedit.bind(this);
   toggleedit() {
     this.setState(prevState => ({
@@ -40,7 +40,7 @@ class Buku extends Component {
       list.map((entry, index) => {
         return (
           <div className="col-md-2 mb-2">
-            <div className="card text-white bg-info" style={{ width: '10rem', height: '100%'}}>
+            <div className="card text-white bg-info" style={{ width: '10rem', height: '100%' }}>
               <Link to={`/book/${entry.id_buku}`}>
                 <img src={entry.gmb_buku} className="card-img-top cardHome" alt="..." />
               </Link>
@@ -48,9 +48,7 @@ class Buku extends Component {
                 <p className="card-text judul"><h5>{entry.nama_buku}</h5></p>
                 <p className="badge">{entry.nama_kategori}</p>
               </div>
-              <div className="container" style={{ backgroundColor: "green", width: "100%" }} >
-                <text>{entry.status_pinjam}</text>
-              </div>
+              {entry.status_pinjam === 'ada' ? <span class="badge badge-pill badge-success" style={{ top: "5%", right: "5%" }} >ada</span> : <span class="badge badge-pill badge-danger" style={{ top: "5%", right: "5%" }} >dipinjam</span>}
             </div>
           </div>
         );
@@ -70,7 +68,7 @@ class Buku extends Component {
           </div>
           <div class="row">
             <div class="col-md-2 offset-md-8 mt-3">
-            <ModalAdd/>
+              <ModalAdd />
             </div>
           </div>
           <div className="row mt-5 justify-content-md-center">

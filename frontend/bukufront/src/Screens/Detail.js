@@ -55,8 +55,11 @@ class Detail extends Component {
               <Link to="/">
                 <p class="nav-item nav-link active font-weight-bold font-size-big ">BACK<span class="sr-only">(current)</span></p>
               </Link>
-              <ModalEdit/>
+              <Link to={`/book/edit/${list ? list.id_buku : ''}`}>
+              <p class="nav-item nav-link active font-weight-bold font-size-big " >EDIT<span class="sr-only">(current)</span></p>
+              </Link>
               <p class="nav-item nav-link active font-weight-bold font-size-big " onClick={() => this.handledelete()} >DELETE<span class="sr-only">(current)</span></p>
+              <p class="nav-item nav-link active font-weight-bold font-size-big " onClick={() => {}} >PINJAM<span class="sr-only">(current)</span></p>
             </div>
           </div>
         </nav>
@@ -72,7 +75,7 @@ class Detail extends Component {
           <div className="container" style={{marginTop:"2%"}} >
           <text className="font-weight-bold" >{list ? `Lokasi buku: ` + list.lokasi_buku : ''}</text>
           </div>
-          <div className="container" style={{marginTop:"3%"}} >
+          <div className="container" style={{marginTop:"3%", marginBottom: 32}} >
           <text>{list ? list.ringkasan : ''}</text>
           </div>
         </div>
