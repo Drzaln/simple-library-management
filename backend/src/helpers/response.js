@@ -28,7 +28,7 @@ module.exports = {
     } else {
       resultPrint.status = 'Not Success'
       resultPrint.status_code = 404
-      resultPrint.message = 'Data Not Fount'
+      resultPrint.message = 'Data Not Found'
     }
     return res.status(resultPrint.status_code).json(resultPrint)
   }

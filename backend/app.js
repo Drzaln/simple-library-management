@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
-const port = process.env.SERVER_PORT || 5000
+const port = process.env.PORT || 5000
 const bodyParser = require ('body-parser')
 
 const categoryRoute = require('./src/routes/category')
-const borrowerRoute = require('./src/routes/borrower')
+const userRoute = require('./src/routes/user')
 const bookRoute     = require('./src/routes/book')
 const borrowingRoute = require('./src/routes/borrowing')
 
@@ -23,8 +23,8 @@ app.use(bodyParser.json())
 
 app.use(`/book`, bookRoute)
 app.use(`/category`, categoryRoute)
-app.use(`/user`, borrowerRoute)
-app.use('/borrowing', borrowingRoute)
+app.use(`/user`, userRoute)
+app.use('/pinjam', borrowingRoute)
 
 app.listen(port)
 console.log(`Dimulai di port ${port}`)

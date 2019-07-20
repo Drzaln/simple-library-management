@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form } from 'reactstrap';
 import { connect } from "react-redux";
-import { postBuku, getBuku } from "../../Publics/redux/actions/buku";
+import { postBuku } from "../../Publics/redux/actions/buku";
 import swal from 'sweetalert';
 
 class AddBook extends React.Component {

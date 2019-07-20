@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getBuku, postBuku } from "../Publics/redux/actions/buku";
+import { getBuku } from "../Publics/redux/actions/buku";
 import { Link } from 'react-router-dom';
 import '../support/style/Home.css'
 import Nav from "../Component/navbar/Nav";
@@ -34,12 +34,11 @@ class Buku extends Component {
   renderBookJsx = () => {
     const { books } = this.state;
     const list = books.listBuku;
-    console.log('uyeeehhh', list)
     let jsx = list &&
       list.length > 0 &&
       list.map((entry, index) => {
         return (
-          <div className="col-md-2 mb-2">
+          <div className="col-md-2 mb-2" key={index} >
             <div className="card text-white bg-info" style={{ width: '10rem', height: '100%' }}>
               <Link to={`/book/${entry.id_buku}`}>
                 <img src={entry.gmb_buku} className="card-img-top cardHome" alt="..." />
@@ -48,7 +47,7 @@ class Buku extends Component {
                 <p className="card-text judul"><h5>{entry.nama_buku}</h5></p>
                 <p className="badge">{entry.nama_kategori}</p>
               </div>
-              {entry.status_pinjam === 'ada' ? <span class="badge badge-pill badge-success" style={{ top: "5%", right: "5%" }} >ada</span> : <span class="badge badge-pill badge-danger" style={{ top: "5%", right: "5%" }} >dipinjam</span>}
+              {entry.status_pinjam === 'ada' ? <span className="badge badge-pill badge-info" style={{ top: "5%", right: "5%" }} >Tersedia</span> : <span className="badge badge-pill badge-danger" style={{ top: "5%", right: "5%" }} >Tidak Tersedia</span>}
             </div>
           </div>
         );
@@ -66,8 +65,8 @@ class Buku extends Component {
               <input className="form-control form-control-lg rounded-pill search" ref="input" onChange={this.search} type="text" placeholder="Search..." />
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-2 offset-md-8 mt-3">
+          <div className="row">
+            <div className="col-md-2 offset-md-8 mt-3">
               <ModalAdd />
             </div>
           </div>
