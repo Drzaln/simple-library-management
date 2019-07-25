@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getBukuId, deleteBook } from '../Publics/redux/actions/buku'
-import { patchPinjam } from "../Publics/redux/actions/pinjam";
+import { patchPinjam } from '../Publics/redux/actions/pinjam'
 import { Link } from 'react-router-dom'
-import Pinjam from "../Component/modal/addBorrower";
+import Pinjam from '../Component/modal/addBorrower'
 import swal from 'sweetalert'
 
 class Detail extends Component {
   state = {
     books: [],
-    pinjams:[]
+    pinjams: []
   }
 
   componentDidMount = async () => {
@@ -43,12 +43,12 @@ class Detail extends Component {
     })
   }
 
-  updateStatus = (id_buku) => {
+  updateStatus = id_buku => {
     const { books } = this.state
     const list = books.listBuku
     console.log(`ini list`, list ? list.id_buku : '')
     this.props.dispatch(patchPinjam(list ? list.id_buku : ''))
-    this.setState({id_buku: list ? list.id_buku : ''})
+    this.setState({ id_buku: list ? list.id_buku : '' })
     swal('Buku Sudah Dikembalikan', {
       icon: 'success'
     })
@@ -82,28 +82,42 @@ class Detail extends Component {
                   BACK<span className='sr-only'>(current)</span>
                 </p>
               </Link>
-              <Link to={`/book/edit/${list ? list.id_buku : ''}`}>
-                <p className='nav-item nav-link active font-weight-bold font-size-big '>
-                  EDIT<span className='sr-only'>(current)</span>
+              {localStorage.level == 'admin' ? (
+                <Link to={`/book/edit/${list ? list.id_buku : ''}`}>
+                  <p className='nav-item nav-link active font-weight-bold font-size-big '>
+                    EDIT<span className='sr-only'>(current)</span>
+                  </p>
+                </Link>
+              ) : (
+                ''
+              )}
+
+              {localStorage.level == 'admin' ? (
+                <p
+                  className='nav-item nav-link active font-weight-bold font-size-big '
+                  onClick={() => this.handledelete()}
+                  style={{ cursor: 'pointer' }}
+                >
+                  DELETE<span className='sr-only'>(current)</span>
                 </p>
-              </Link>
-              <p
-                className='nav-item nav-link active font-weight-bold font-size-big '
-                onClick={() => this.handledelete()}
-                style={{cursor:'pointer'}}
-              >
-                DELETE<span className='sr-only'>(current)</span>
-              </p>
+              ) : (
+                ''
+              )}
+
               {(list ? list.status_pinjam : '') === 'ada' ? (
-                <Pinjam/>
+                localStorage.level == 'user' ? (
+                  <Pinjam />
+                ) : (
+                  ''
+                )
               ) : (
                 <p
-          className='nav-item nav-link active font-weight-bold font-size-big '
-          onClick={() => this.updateStatus()}
-          style={{cursor:'pointer'}}
-        >
-          KEMBALIKAN BUKU<span className='sr-only'>(current)</span>
-        </p>
+                  className='nav-item nav-link active font-weight-bold font-size-big '
+                  onClick={() => this.updateStatus()}
+                  style={{ cursor: 'pointer' }}
+                >
+                  KEMBALIKAN BUKU<span className='sr-only'>(current)</span>
+                </p>
               )}
             </div>
           </div>

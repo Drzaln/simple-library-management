@@ -59,9 +59,9 @@ class AddBook extends React.Component {
 
         return (
             <div>
-                <Button color="none" className="btn btn-outline-info" onClick={this.toggle}>Add Book</Button>
+                <Button color="none" className="btn btn-outline-info" onClick={this.toggle}>{this.props.adbuku}</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Data</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>{this.props.adbuku}</ModalHeader>
                     <ModalBody>
                         <Form>
                             <Label>Url Image</Label>

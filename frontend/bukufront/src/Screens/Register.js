@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../support/style/Register.css'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Button } from "reactstrap";
 import swal from 'sweetalert'
 import Navbar from '../Component/navbar/Nav'
 import { registerUser } from '../Publics/redux/actions/user'
@@ -25,7 +26,7 @@ class Register extends Component {
         title: 'Anda Sudah Terdaftar, Silahkan Login',
         icon: 'success'
       }).then(() => {
-        this.props.history.push(`/`)
+        window.history.go('/')
       })
     }
 
@@ -72,13 +73,14 @@ class Register extends Component {
               autoFocus
               onChange={e => this.setState({ password: e.target.value })}
             />
-            <input
-              type='submit'
-              name='register'
-              className='register register-submit'
-              defaultValue='register'
+            <Button
+              color='none'
+              className='btn btn-info btn-sm'
+              style={{width:'100%'}}
               onClick={userRegister.bind(this)}
-            />
+            >
+              REGISTER
+            </Button>
           </form>
         </div>
       </div>

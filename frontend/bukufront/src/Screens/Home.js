@@ -68,7 +68,7 @@ class Buku extends Component {
           </div>
           <div className="row">
             <div className="col-md-2 offset-md-8 mt-3">
-              {/* <ModalAdd /> */}
+            {localStorage.token != null ? <ModalAdd adbuku={'Add Book'} /> : <ModalAdd adbuku={'Donate Book'} /> }
             </div>
           </div>
           <div className="row mt-5 justify-content-md-center">

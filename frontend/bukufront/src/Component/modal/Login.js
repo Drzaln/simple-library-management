@@ -45,6 +45,7 @@ class Login extends React.Component {
         icon: 'success'
       }).then(() => {
         this.toggle()
+        window.history.go('/')
       })
     }
 

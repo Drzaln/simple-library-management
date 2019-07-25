@@ -9,9 +9,13 @@ export const userLogin = (data) => {
             const token = res.data.token
             const id_user = res.data.id_user
             const nama_user = res.data.nama_user
+            const status = res.data.status
+            const level = res.data.level
             localStorage.setItem('token', token)
             localStorage.setItem('id_user', id_user)
             localStorage.setItem('nama_user', nama_user)
+            localStorage.setItem('status', status)
+            localStorage.setItem('level', level)
         }),
         // headers:{
         //     "Content-Type": "application/json",
