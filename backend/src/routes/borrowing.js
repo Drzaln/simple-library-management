@@ -7,7 +7,7 @@ Route
   .get('/', borrowingController.getBorrowing)
   .get('/details/:id', borrowingController.detBorrowing)
   .post(`/`, borrowingController.insertBorrowing)
-  .patch(`/:id_borrowing`, borrowingController.updateBorrowing)
+  .patch(`/:id_buku`, borrowingController.updateBorrowing)
   .delete(`/:id_borrowing`, borrowingController.deleteBorrowing)
 
 module.exports = Route

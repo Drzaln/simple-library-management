@@ -15,9 +15,9 @@ export const postPinjam = (data) => {
   };
 };
 
-export const patchPinjam = (id_pinjam) => {
+export const patchPinjam = (id_buku) => {
   return {
     type: "PATCH_PINJAM",
-    payload: axios.patch(Url + `pinjam/${id_pinjam}`)
+    payload: axios.patch(Url + `pinjam/${id_buku}`)
   }
 }

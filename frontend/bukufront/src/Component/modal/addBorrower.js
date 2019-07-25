@@ -60,6 +60,7 @@ class AddBorrower extends React.Component {
         <p
           className='nav-item nav-link active font-weight-bold font-size-big '
           onClick={this.toggle}
+          style={{cursor:'pointer'}}
         >
           PINJAM<span className='sr-only'>(current)</span>
         </p>

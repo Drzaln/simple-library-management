@@ -49,12 +49,13 @@ module.exports = {
       })
     })
   },
-  updateBorrowing: (id_user, data) => {
-    data2 = 'ada'
+  updateBorrowing: (id_buku, data) => {
+console.log([data, id_buku])
+console.log(id_buku)
     return new Promise((resolve, reject) => {
       conn.query(
         'UPDATE tb_buku SET status_pinjam = ? WHERE id_buku = ?',
-        [data2, id_buku],
+        [data, id_buku],
         (err, result) => {
           if (!err) {
             resolve(result)

@@ -47,8 +47,11 @@ class Detail extends Component {
     const { books } = this.state
     const list = books.listBuku
     console.log(`ini list`, list ? list.id_buku : '')
-    this.props.dispatch(this.updateStatus(list ? list.id_buku : ''))
+    this.props.dispatch(patchPinjam(list ? list.id_buku : ''))
     this.setState({id_buku: list ? list.id_buku : ''})
+    swal('Buku Sudah Dikembalikan', {
+      icon: 'success'
+    })
   }
 
   render () {
@@ -87,6 +90,7 @@ class Detail extends Component {
               <p
                 className='nav-item nav-link active font-weight-bold font-size-big '
                 onClick={() => this.handledelete()}
+                style={{cursor:'pointer'}}
               >
                 DELETE<span className='sr-only'>(current)</span>
               </p>
@@ -96,6 +100,7 @@ class Detail extends Component {
                 <p
           className='nav-item nav-link active font-weight-bold font-size-big '
           onClick={() => this.updateStatus()}
+          style={{cursor:'pointer'}}
         >
           KEMBALIKAN BUKU<span className='sr-only'>(current)</span>
         </p>

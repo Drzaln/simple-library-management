@@ -46,16 +46,13 @@ module.exports = {
   },
 
   updateBorrowing: (req, res) => {
-    const id_user = req.params.id_borrowing
-    const data = {
-      id_buku: req.body.id_buku,
-      nama_user: req.body.nama_user
-    }
+    const id_buku = req.params.id_buku
+    const data = 'ada'
     borrowingModel
-      .updateBorrowing(id_user, data)
+      .updateBorrowing(id_buku, data)
       .then(resultBorrowing => {
         const result = resultBorrowing
-        help.response(res, result, 200, [id_user, data])
+        help.response(res, result, 200, [id_buku, data])
       })
       .catch(error => {
         console.log(error)

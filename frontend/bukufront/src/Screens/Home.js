@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import '../support/style/Home.css'
 import Nav from "../Component/navbar/Nav";
 import ModalAdd from "../Component/modal/addBook";
+import Login from "../Component/modal/Login";
 
 class Buku extends Component {
   state = {
@@ -44,7 +45,7 @@ class Buku extends Component {
                 <img src={entry.gmb_buku} className="card-img-top cardHome" alt="..." />
               </Link>
               <div className="card-body">
-                <p className="card-text judul"><h5>{entry.nama_buku}</h5></p>
+                <p className="card-text judul"><h6>{entry.nama_buku}</h6></p>
                 <p className="badge">{entry.nama_kategori}</p>
               </div>
               {entry.status_pinjam === 'ada' ? <span className="badge badge-pill badge-info" style={{ top: "5%", right: "5%" }} >Tersedia</span> : <span className="badge badge-pill badge-danger" style={{ top: "5%", right: "5%" }} >Tidak Tersedia</span>}
@@ -58,7 +59,7 @@ class Buku extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav Navitem={<Login/>}/>
         <div className="container">
           <div className="row justify-content-md-center">
             <div className="col-sm-7 mt-5">
@@ -67,7 +68,7 @@ class Buku extends Component {
           </div>
           <div className="row">
             <div className="col-md-2 offset-md-8 mt-3">
-              <ModalAdd />
+              {/* <ModalAdd /> */}
             </div>
           </div>
           <div className="row mt-5 justify-content-md-center">

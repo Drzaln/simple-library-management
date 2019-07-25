@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap'
 import '../../support/style/nav.css'
 import { Link } from 'react-router-dom'
+import Login from "../../Component/modal/Login";
 
 export default class Example extends React.Component {
   constructor (props) {
@@ -27,14 +28,17 @@ export default class Example extends React.Component {
             </Link>
             <Nav className='ml-auto' navbar>
               <NavItem>
-                <Link to='/list'>
+                {/* <Link to='/list'>
                   <button
                     type='button'
                     className='btn btn-outline-primary btn-sm font-weight-bold'
                   >
-                    Buku Dipinjam
+                    Histori Peminjaman
                   </button>
-                </Link>
+                </Link> */}
+                {this.props.Navitem}
+              </NavItem>
+              <NavItem style={{marginLeft:16}} >
               </NavItem>
             </Nav>
           </div>
