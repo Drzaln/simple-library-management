@@ -83,6 +83,7 @@ class AddBorrower extends React.Component {
               <Input
                 placeholder='ID...'
                 id='id_user'
+                // value={localStorage.id_user}
                 onChange={e => this.setState({ id_user: e.target.value })}
                 className='mb-3'
               />
@@ -90,6 +91,7 @@ class AddBorrower extends React.Component {
               <Input
                 placeholder='Nama...'
                 id='nama_user'
+                // value={localStorage.nama_user}
                 onChange={e => this.setState({ nama_user: e.target.value })}
                 className='mb-3'
               />

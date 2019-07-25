@@ -52,11 +52,11 @@ function App () {
         >
           <Route path={'/'} component={Home} exact />
           <Route path={'/book/:id_buku'} component={Detail} />
-          <Route exact path={'/book/edit/:id_buku'} component={Edit} />
-          <Route exact path={'/list/'} component={Pinjam} />
           {/* <Route path={'/login'} component={Login}/> */}
           <Route path={'/register'} component={Register} />
         </AnimatedSwitch>
+        <Route exact path={'/book/edit/:id_buku'} component={Edit} />
+        <Route exact path={'/list/'} component={Pinjam} />
       </div>
     </Provider>
   )

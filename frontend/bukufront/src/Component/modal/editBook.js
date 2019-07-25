@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form 
 import { connect } from "react-redux";
 import { editBuku, getBukuId } from "../../Publics/redux/actions/buku";
 
-class AddBook extends React.Component {
+class EditBook extends React.Component {
 
     constructor(props) {
 		super(props);
@@ -99,5 +99,5 @@ const mapStateToProps = state => {
     };
   };
   
-  export default connect(mapStateToProps)(AddBook);
+  export default connect(mapStateToProps)(EditBook);
   
