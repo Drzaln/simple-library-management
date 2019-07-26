@@ -104,21 +104,21 @@ class Detail extends Component {
                 ''
               )}
 
-              {(list ? list.status_pinjam : '') === 'ada' ? (
-                localStorage.level == 'user' ? (
-                  <Pinjam />
-                ) : (
-                  ''
-                )
-              ) : (
+              {localStorage.level == 'admin' &&
+              (list ? list.status_pinjam : '') === 'dipinjam' ? (
                 <p
-                  className='nav-item nav-link active font-weight-bold font-size-big '
-                  onClick={() => this.updateStatus()}
-                  style={{ cursor: 'pointer' }}
-                >
+                    className='nav-item nav-link active font-weight-bold font-size-big '
+                    onClick={() => this.updateStatus()}
+                    style={{ cursor: 'pointer' }}
+                  >
                   KEMBALIKAN BUKU<span className='sr-only'>(current)</span>
-                </p>
-              )}
+                  </p>
+                ) : localStorage.level == 'user' &&
+                (list ? list.status_pinjam : '') === 'ada' ? (
+                  <Pinjam id_buku={this.props.match.params.id_buku} />
+                  ) : (
+                    ''
+                  )}
             </div>
           </div>
         </nav>

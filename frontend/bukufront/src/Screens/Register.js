@@ -38,7 +38,7 @@ class Register extends Component {
           <br />
           <form>
             <input
-              type='text'
+              type='number'
               name='id_user'
               placeholder='ID...'
               id='id_user'

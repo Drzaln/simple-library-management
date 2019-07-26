@@ -33,9 +33,9 @@ class AddBorrower extends React.Component {
   render () {
     const addPinjam = () => {
       this.state.pinjam.push({
-        id_user: this.state.id_user,
-        nama_user: this.state.nama_user,
-        id_buku: this.state.id_buku,
+        id_user: localStorage.id_user,
+        nama_user: localStorage.nama_user,
+        id_buku: this.props.id_buku,
         lama_pinjam: this.state.lama_pinjam,
         tgl_pinjam: new Date(),
       })
@@ -76,6 +76,7 @@ class AddBorrower extends React.Component {
               <Input
                 placeholder='ID...'
                 id='id_buku'
+                value={this.props.id_buku}
                 onChange={e => this.setState({ id_buku: e.target.value })}
                 className='mb-3'
               />
@@ -83,7 +84,7 @@ class AddBorrower extends React.Component {
               <Input
                 placeholder='ID...'
                 id='id_user'
-                // value={localStorage.id_user}
+                value={localStorage.id_user}
                 onChange={e => this.setState({ id_user: e.target.value })}
                 className='mb-3'
               />
@@ -91,7 +92,7 @@ class AddBorrower extends React.Component {
               <Input
                 placeholder='Nama...'
                 id='nama_user'
-                // value={localStorage.nama_user}
+                value={localStorage.nama_user}
                 onChange={e => this.setState({ nama_user: e.target.value })}
                 className='mb-3'
               />

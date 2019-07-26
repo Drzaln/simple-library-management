@@ -4,13 +4,7 @@ import Url from "../../../support/url";
 export const getUser = (token, id,level) => {
   return {
     type: "GET_USER",
-    payload: axios.get(Url + `user`, {
-      headers:{
-        'authorization': 'ulalalalala',
-        'x-token': 'token',
-        'x-user': 'id'
-      }
-    })
+    payload: axios.get(Url + `user`)
   };
 };
 
